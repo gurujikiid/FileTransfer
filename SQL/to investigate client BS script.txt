@@ -1,0 +1,4 @@
+select p.name ,c.name
+from siebel.S_RT_SVC_SCRPT c, siebel.S_RT_SVC p
+where p.row_id= c.RT_SVC_ID
+and c.SCRIPT like '%Qty should be equal and within stock%';

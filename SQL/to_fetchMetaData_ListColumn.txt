@@ -1,0 +1,9 @@
+select * from siebel.S_APPLET;
+select * from siebel.S_LIST;
+select * from siebel.S_LIST_COLUMN;
+
+select t4.name from siebel.S_APPLET t4, siebel.S_LIST t5, siebel.S_LIST_COLUMN t6
+where 
+t6.LIST_ID = t5.row_id
+and t5.APPLET_ID = t4.row_id
+and t6.FIELD_NAME = 'Down Payment';

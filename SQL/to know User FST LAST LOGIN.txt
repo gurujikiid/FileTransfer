@@ -1,0 +1,7 @@
+Select C.ROW_ID, C.FST_NAME, C.LAST_NAME , U.LOGIN
+from siebel.S_CONTACT C, SIEBEL.S_USER U
+where U.PAR_ROW_ID = C.PAR_ROW_ID 
+and 
+C.ROW_ID = '1-3I3GJQ'
+--U.LOGIN = ''
+;

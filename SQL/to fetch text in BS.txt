@@ -1,0 +1,6 @@
+select a.name, b.Name,b.Script from siebel.S_RT_SVC a, siebel.S_RT_SVC_SCRPT b
+where
+b.RT_SVC_ID = a.row_id
+--and a.row_id = '1-2IUQACX'
+--and a.inactive_flg <> 'Y'
+and b.Script like '%Channel Partner%';

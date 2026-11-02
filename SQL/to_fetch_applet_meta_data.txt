@@ -1,0 +1,126 @@
+select  "Applet Name"
+,"BC Name"
+,"BC Field"
+,"Required"
+,"Calculated"
+,"Calculated Value"
+,"Join Name"
+,"Table"
+,"Column"
+,"Data Type"
+,"Length"
+,"Multi-valued"
+,"MV Link"
+,"Pick List"
+,"LOV Name"
+,min("Caption") "Caption"
+,"Display Order"
+from (
+select ap.name "Applet Name"
+      ,bc.name "BC Name"
+      ,fld.name "BC Field"
+      ,fld.required "Required"
+      ,fld.calculated "Calculated"
+      ,fld.calcval "Calculated Value"
+      ,fld.join_name "Join Name"
+      ,(case when fld.mvlink_name is null then nvl(nvl(jotab.name, fld.join_name), case when fld.calculated = 'Y' then null else bc.table_name end) else null end) "Table"
+      ,fld.col_name "Column"
+      ,fld.type "Data Type"
+      ,(case when fld.prec_num is null then to_char(fld.textlen)
+             else to_char(fld.prec_num) || to_char(case when fld.scale is null or fld.scale = 0 then '' else ',' || fld.scale end)
+        end) "Length"
+      ,fld.multi_valued "Multi-valued"
+      ,fld.mvlink_name "MV Link"
+      ,pl.name "Pick List"
+      ,pl.type_value "LOV Name"
+      ,coi.caption "Caption"
+      ,co.sequence "Display Order"
+from   siebel.s_control co
+       inner join siebel.s_control_intl coi on coi.control_id = co.row_id and coi.name = 'ENU-STD'
+       inner join siebel.s_applet ap on co.applet_id = ap.row_id
+       inner join siebel.s_buscomp bc on ap.buscomp_name = bc.name
+       inner join siebel.s_field fld on fld.name = co.field_name and fld.buscomp_id = bc.row_id
+       inner join siebel.s_repository rep on bc.repository_id = rep.row_id
+       left outer join siebel.s_join jo on jo.buscomp_id = fld.buscomp_id and fld.join_name = jo.name
+       left outer join siebel.s_table jotab on jotab.name = jo.dest_tbl_name and jotab.repository_id = rep.row_id
+       left outer join siebel.s_picklist pl on fld.picklist_name = pl.name and pl.repository_id = rep.row_id
+where  rep.name = 'Siebel Repository'
+and    ap.name = :AppletName
+and    fld.name = :FieldName
+and    ap.repository_id = rep.row_id
+and    co.repository_id = rep.row_id
+and    bc.repository_id = rep.row_id
+and    fld.repository_id = rep.row_id
+and    nvl(co.inactive_flg,'N') = 'N'
+and    nvl(ap.inactive_flg,'N') = 'N'
+and    nvl(bc.inactive_flg,'N') = 'N'
+and    nvl(fld.inactive_flg,'N') = 'N'
+and    nvl(rep.inactive_flg,'N') = 'N'
+and    nvl(jo.inactive_flg,'N') = 'N'
+union all
+select ap.name "Applet Name"
+      ,bc.name "BC Name"
+      ,fld.name "BC Field"
+      ,fld.required "Required"
+      ,fld.calculated "Calculated"
+      ,fld.calcval "Calculated Value"
+      ,fld.join_name "Join Name"
+      ,(case when fld.mvlink_name is null then nvl(nvl(jotab.name, fld.join_name), case when fld.calculated = 'Y' then null else bc.table_name end) else null end) "Table"
+      ,fld.col_name "Column"
+      ,fld.type "Data Type"
+      ,(case when fld.prec_num is null then to_char(fld.textlen)
+             else to_char(fld.prec_num) || to_char(case when fld.scale is null or fld.scale = 0 then '' else ',' || fld.scale end)
+        end) "Length"
+      ,fld.multi_valued "Multi-valued"
+      ,fld.mvlink_name "MV Link"
+      ,pl.name "Pick List"
+      ,pl.type_value "LOV Name"
+      ,coi.display_name "Caption"
+      ,co.sequence "Display Order"
+from   siebel.s_list li
+       inner join siebel.s_applet ap on li.applet_id = ap.row_id
+       inner join siebel.s_list_column co on co.list_id = li.row_id
+       left outer join siebel.s_list_col_intl coi on coi.list_column_id = co.row_id and coi.name = 'ENU-STD'
+       inner join siebel.s_buscomp bc on ap.buscomp_name = bc.name
+       inner join siebel.s_field fld on fld.name = co.field_name and fld.buscomp_id = bc.row_id
+       inner join siebel.s_repository rep on bc.repository_id = rep.row_id
+       left outer join siebel.s_join jo on jo.buscomp_id = fld.buscomp_id and fld.join_name = jo.name
+       left outer join siebel.s_table jotab on jotab.name = jo.dest_tbl_name and jotab.repository_id = rep.row_id
+       left outer join siebel.s_picklist pl on fld.picklist_name = pl.name and pl.repository_id = rep.row_id
+where  rep.name = 'Siebel Repository'
+and  ap.name = :AppletName
+and    fld.name = :FieldName
+and    li.repository_id = rep.row_id
+and    ap.repository_id = rep.row_id
+and    co.repository_id = rep.row_id
+and    bc.repository_id = rep.row_id
+and    fld.repository_id = rep.row_id
+and    nvl(li.inactive_flg,'N') = 'N'
+and    nvl(co.inactive_flg,'N') = 'N'
+and    nvl(ap.inactive_flg,'N') = 'N'
+and    nvl(bc.inactive_flg,'N') = 'N'
+and    nvl(fld.inactive_flg,'N') = 'N'
+and    nvl(rep.inactive_flg,'N') = 'N'
+and    nvl(jo.inactive_flg,'N') = 'N'
+)
+group by  "Applet Name"
+,"BC Name"
+,"BC Field"
+,"Required"
+,"Calculated"
+,"Calculated Value"
+,"Join Name"
+,"Table"
+,"Column"
+,"Data Type"
+,"Length"
+,"Multi-valued"
+,"MV Link"
+,"Pick List"
+,"LOV Name"
+,"Display Order"
+order by "Applet Name"
+        ,"BC Name"
+        ,"MV Link" desc
+        ,"Table"
+  ,"Display Order";
