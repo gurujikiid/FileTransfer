@@ -1,0 +1,23 @@
+//to call outbound from siebel script
+
+
+var strUser = "{"firstName":"West","lastName":"William123"}"
+var sURL = "https://"
+
+var EAISiebelAdapter = TheApplication().GetService("EAI HTTP Transport");
+var Inputs = TheApplication().NewPropertySet();
+
+var Outputs = TheApplication().NewPropertySet();
+
+Inputs.SetProperty("HTTPRequestURLTemplate",sURL);
+Inputs.SetProperty("HTTPRequestMethod","PUT");
+Inputs.SetProperty("CharSetConversion","UTF-8");
+Inputs.SetProperty("HDR.X-Gatekeeper-SessionToken","CF53B7EB34EF457696F674696EK06D53");
+Inputs.SetProperty("HTTPAccept","application/json");
+Inputs.SetProperty("HTTPIsSecureConn","Y");
+Inputs.SetProperty("",strUser);
+Inputs.SetProperty("HTTPContentType", "application/json");
+
+EAISiebelAdapter.InvokeMethod("SendReceive", Inputs , Outputs);
+
+var sToken = Outputs.GetValue();

@@ -1,0 +1,49 @@
+-- this is to approve PARTS Stock Adjustment:
+
+--step1: query with the below query:
+
+SELECT distinct A.X_STOCK_ADJ_ID FROM SIEBEL.CX_STOCK_APPROV A, SIEBEL.S_INVLOC_CYCCNT B , SIEBEL.S_PROD_INV_CNT C
+WHERE B.X_STK_ADJ_REF_NUM = '10375-03-PSA-0425-56' AND
+B.ROW_ID = C.INVLOC_CYCCNT_ID
+and C.ROW_ID = A.X_STOCK_ADJ_ID;
+
+-- run below code for approval for every parts
+
+var Status = "Approved";
+var sAdjId ="2-1A8XNG85"; // change it
+var BO = TheApplication().GetBusObject("HHML Product Addition");
+var BC = BO.GetBusComp("HHML Cycle Counting Part Addition");
+with(BC)
+	{
+		ClearToQuery();
+		SetViewMode(AllView);
+		SetSearchSpec("Id",sAdjId);
+		ExecuteQuery(ForwardBackward); 
+		var Rec = FirstRecord();
+		if(Rec)
+		{
+			ActivateField("HMCL Approval Status");
+			SetFieldValue("HMCL Approval Status",Status);
+			WriteRecord();
+			log("DONE1");
+		}
+	}
+	
+var BO = TheApplication().GetBusObject("Cycle Counting");
+var BC = BO.GetBusComp("HMCL Stock Adjust Approval");
+with(BC)
+	{
+		ClearToQuery();
+		SetViewMode(AllView);
+		SetSearchSpec("HMCL Stock Adj Id",sAdjId);
+		ExecuteQuery(ForwardBackward); 
+		var Rec = FirstRecord();
+		while(Rec)
+		{
+			ActivateField("HMCL Status");
+			SetFieldValue("HMCL Status",Status);
+			Rec = NextRecord();
+			log("DONE2");
+		}
+		WriteRecord();
+	}

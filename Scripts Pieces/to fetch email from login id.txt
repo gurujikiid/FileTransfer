@@ -1,0 +1,16 @@
+var sBo = TheApplication().GetBusObject("Employee");
+	var sBC = sBo.GetBusComp("Employee");
+
+	with(sBC) {
+		ClearToQuery();
+ActivateField("Login Name");
+ActivateField("EMail Addr");
+		SetSearchSpec("Login Name", "ECUB90176909");
+		SetViewMode(AllView);
+		ExecuteQuery(ForwardBackward);
+		if(FirstRecord()){
+			var sSRType = sBC.GetFieldValue("EMail Addr");	
+log(sSRType );
+
+
+}}

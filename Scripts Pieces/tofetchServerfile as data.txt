@@ -1,0 +1,28 @@
+
+// To fetch server files from siebel script
+
+
+
+
+var csvFile = Clib.fopen("/siebel_as/ses/siebsrvr/ServerDataSrc/files/coDesk_1951703_CX_BULK_REQ_2-7A33YGA_2-AEMWSA.csv", "r");
+var Line;
+var delimiter = ",";
+while ((Line = Clib.fgets(csvFile)) != null) 
+{
+  var DataFile = new Array();
+  DataFile = Line.split(delimiter);
+log(DataFile[4]);
+log(DataFile.length);
+}
+
+
+
+//to move server files from one path to another
+
+var sExistingPath = "/siebel/siebsrvr/temp/filename.txt";
+var sNewDir =  "/siebel/siebsrvr/temp1/nextfolder";
+var cmd = "mv '" + sExistingPath + "' '" + sNewDir + "'";
+Clib.system(cmd);
+
+var sDelim = sExistingPath.lastIndexOf("/");
+var sNewPath = sNewDir + sExistingPath.substring(sDelim,sExistingPath.length);

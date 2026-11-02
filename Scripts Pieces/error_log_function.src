@@ -1,0 +1,32 @@
+function ErrorLog(errObjId,errObj,errObjType,errCode,errText,errStepName)
+{
+	try
+	{
+		var errorBS = TheApplication().GetService("HHML Error Log BS");
+		var ErrInputs = TheApplication().NewPropertySet();
+		var ErrOutputs = TheApplication().NewPropertySet();
+		ErrInputs.SetProperty("ErrorCode",errCode);
+		ErrInputs.SetProperty("ErrorDesc",errText);
+		ErrInputs.SetProperty("ErrorObject",errObj);		
+		ErrInputs.SetProperty("ErrorObjId",errObjId);
+		ErrInputs.SetProperty("ErrorObjType",errObjType);
+		ErrInputs.SetProperty("ErrorStepName",errStepName);		
+		errorBS.InvokeMethod("LogError",ErrInputs,ErrOutputs);
+	}
+	catch(e)
+	{
+		throw e;
+	}
+	finally
+	{
+		errorBS = null;
+		ErrInputs = null;
+		ErrOutputs = null;
+	}
+}
+
+
+
+
+
+ErrorLog(errObjId,errObj,errObjType,e.errCode,e.errText,errStepName);

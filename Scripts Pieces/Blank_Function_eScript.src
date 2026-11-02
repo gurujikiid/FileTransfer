@@ -1,0 +1,25 @@
+function function_name(Inputs, Outputs) 
+{
+   try 
+   {
+
+   } 
+   catch (e) 
+   {
+		var errorBS = TheApplication().GetService("HHML Error Log BS");
+		var ErrInputs = TheApplication().NewPropertySet();
+		var ErrOutputs = TheApplication().NewPropertySet();
+		ErrInputs.SetProperty("ErrorCode",e.errCode);
+		ErrInputs.SetProperty("ErrorDesc",e.errText);
+		ErrInputs.SetProperty("ErrorObject","Input_101");
+		ErrInputs.SetProperty("ErrorObjId","Input_102");
+		ErrInputs.SetProperty("ErrorObjType","Input_103");
+		ErrInputs.SetProperty("ErrorStepName", "Input_104");
+		errorBS.InvokeMethod("LogError",ErrInputs,ErrOutputs);
+		throw (e);
+   } 
+   finally 
+   {
+   
+   }
+}

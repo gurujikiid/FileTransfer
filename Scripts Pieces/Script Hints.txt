@@ -1,0 +1,8 @@
+var nn = TheApplication().GetBusObject("Order Entry");
+var mm = nn.Name();
+
+
+>> nn = BusObject [Order Entry]
+>> mm = Order Entry
+
+-------------------------------------------------------------------------------------

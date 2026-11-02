@@ -1,0 +1,44 @@
+function QueryOrder(Inputs, Outputs) 
+{
+   var OrderId = Inputs.GetProperty("Object Id");
+   try 
+   {
+		var HHMLOptyAccountId= "",;
+		var BO = TheApplication().GetBusObject("Order Entry (Sales)");
+		var BC= BO.GetBusComp("Order Entry - Orders");
+		with (BC)
+		{
+			SetViewMode(AllView);
+			ClearToQuery();
+			ActivateField("HHML Opty Account Id");				
+			ActivateField("Id");
+			SetSearchSpec("Id", OrderId);
+			ExecuteQuery();
+			if (FirstRecord())
+			{				
+				HHMLOptyAccountId = GetFieldValue("HHML Opty Account Id");				
+			}
+			
+		}		
+		Outputs.SetProperty("Account Opty Id", HHMLOptyAccountId );		
+   } 
+   catch (e) 
+   {
+		var errorBS = TheApplication().GetService("HHML Error Log BS");
+		var ErrInputs = TheApplication().NewPropertySet();
+		var ErrOutputs = TheApplication().NewPropertySet();
+		ErrInputs.SetProperty("ErrorCode",e.errCode);
+		ErrInputs.SetProperty("ErrorDesc",e.errText);
+		ErrInputs.SetProperty("ErrorObject","HMCL Order Enq Query BS");
+		ErrInputs.SetProperty("ErrorObjId",OrderId);
+		ErrInputs.SetProperty("ErrorObjType","BS");
+		ErrInputs.SetProperty("ErrorStepName", "QueryOrder");
+		errorBS.InvokeMethod("LogError",ErrInputs,ErrOutputs);
+		throw (e);
+   } 
+   finally 
+   {
+   BO = null;
+   BC = null;
+   }
+}

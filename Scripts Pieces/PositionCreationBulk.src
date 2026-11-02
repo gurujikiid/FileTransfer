@@ -1,0 +1,34 @@
+function PositionCreationBulk(Inputs, Outputs) 
+{   
+    try
+  {
+   var positionName = Inputs.GetProperty("positionName");
+   var divisionIDs = Inputs.GetProperty("divisionIDs");
+   
+   var posBO = TheApplication().GetBusObject("Position");
+   var posBC = posBO.GetBusComp("Position");
+   
+   var division = divisionIDs.split("|");
+   var divisionCount= division.length;
+   
+   for ( var i=0; i<divisionCount; i++)
+   {
+    with(posBC)
+    {
+	 InvokeMethod("SetAdminMode", "TRUE");
+     NewRecord(NewAfter);
+     SetFieldValue("Division Id",  division[i]);
+     SetFieldValue("Name",  positionName);
+     WriteRecord();
+    }
+   }
+   Outputs.SetProperty("Result","Successfully created positions. ");
+ } 
+ catch (e)
+ {
+    throw(e);
+ } 
+ finally 
+ { 
+ }
+}
