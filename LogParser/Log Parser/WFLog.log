@@ -1,0 +1,16 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset238 Microsoft Sans Serif;}}
+{\colortbl ;\red0\green0\blue255;\red128\green0\blue0;\red255\green0\blue0;}
+\viewkind4\uc1\pard\lang1051\f0\fs17 \cf1<\cf2LogParse\cf1>\par
+   \cf1 <\cf2 Dummy\cf1 >\par
+      \cf1 <\cf2 ErrorObjId\cf1 />\par
+      \cf1 <\cf2 ErrorObject\cf1 >\cf0 HHML Generate Bookings Sub Process WF\cf1 </\cf2 ErrorObject\cf1 >\par
+      \cf1 <\cf2 ErrorObjType\cf1 >\cf0 Workflow\cf1 </\cf2 ErrorObjType\cf1 >\par
+      \cf1 <\cf2 ErrorCode\cf1 >\cf0 (SBL-BPR-00187)--(SBL-BPR-00100)--(SBL-DAT-00521)\cf1 </\cf2 ErrorCode\cf1 >\par
+      \cf1 <\cf2 ErrorDesc\cf1 >\cf0 Error updating business component at step 'Insert Order'.(SBL-BPR-00187)
+--
+This error is returned when the workflow/task is executing the Siebel Operation business service.(SBL-BPR-00100)
+--
+'Model Year' Cannot be Negative and can not be a future year: SBL-DAT-00521\cf1 </\cf2 ErrorDesc\cf1 >\par
+   \cf1 </\cf2 Dummy\cf1 >\par
+\cf1 </\cf2 LogParse\cf1 >\par
+}
