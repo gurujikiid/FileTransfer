@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><?Siebel-Property-Set EscapeNames="true"?><Test_spcService
+ Service_spcName="EAI HTTP Transport"
+ Method_spcName="SendReceive"
+ Iterations="1"
+></Test_spcService
+>

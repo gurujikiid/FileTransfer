@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><?Siebel-Property-Set EscapeNames="true"?><PropertySet
+ HTTPContentType="application/json"
+ HTTPRequestURLTemplate="https://rfm-uat-middleware.heromotocorp.com/eshop/statusupdate"
+ HTTPRequestMethod="POST"
+ HTTPAccept="application/json"
+ CharSetConversion="UTF-8"
+>{&quot;data&quot;:{&quot;BasicPrice&quot;: &quot;57340.63&quot;,&quot;Color&quot;: &quot;BLA&quot;,&quot;Model&quot;: &quot;SPLENDOR +&quot;,&quot;StatusCode&quot;: &quot;SBL-ORD-200&quot;,&quot;InvoiceNumber&quot;: &quot;10375BA23S2871&quot;,&quot;InvoiceDate&quot;: &quot;01/01/2023&quot;,&quot;Orderstatus&quot;: &quot;Invoiced&quot;,&quot;Amount&quot;: &quot;87417.0026&quot;,&quot;OrderNumber&quot;: &quot;1000273657&quot;,&quot;Variant&quot;: &quot;HSPPBIRSCFI&quot;,&quot;VINNumber&quot;: &quot;MBLHAW129NHMA5202&quot;}}</PropertySet
+>

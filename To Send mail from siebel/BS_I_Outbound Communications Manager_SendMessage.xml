@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><?Siebel-Property-Set EscapeNames="true"?><PropertySet
+ MsgSubject="Testing Email From Development Team"
+ MsgToList="hmcc.l2dev@heromotocorp.com"
+ MsgBody="Dear Sir/Ma&apos;am, This is a testing email from Hero COnnect DMS development team. Please report for successful testing. Regards!"
+ AttachNameList="Test_Attachment.PDF"
+ CommProfile="Default SMTP Profile"
+ AttachFileList="/siebel_as/siebelfs/network_invoices/RTSAPP_7340516_5661_0_GST Retail Invoice.PDF"
+></PropertySet
+>

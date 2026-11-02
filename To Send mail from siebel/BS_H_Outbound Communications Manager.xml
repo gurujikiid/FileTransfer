@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><?Siebel-Property-Set EscapeNames="true"?><Test_spcService
+ Service_spcName="Outbound Communications Manager"
+ Method_spcName="SendMessage"
+ Iterations="1"
+></Test_spcService
+>
