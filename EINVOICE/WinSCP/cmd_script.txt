@@ -1,0 +1,4 @@
+open sftp://siebel:sadmin444@172.20.1.59 -hostkey="ssh-ed25519 256 54:10:d5:11:19:36:6a:ce:bd:17:c2:ed:0a:cb:8d:a8"
+cd /siebelfs/PartSaleOrders/
+get Neeraj1.txt
+exit
