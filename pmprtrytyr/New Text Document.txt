@@ -1,0 +1,4 @@
+to hide control: $('#s_3_1_65_0_Ctrl').hide()
+to show control: $('#s_3_1_65_0_Ctrl').show()
+
+to change button display name : $("#s_3_1_18_0_Ctrl").html('newName');
